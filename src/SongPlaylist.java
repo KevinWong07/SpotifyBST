@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class SongPlaylist {
@@ -47,18 +46,38 @@ public class SongPlaylist {
         }
     }
 
+    public void inOrder() {
+        inOrder(root);
+    }
+    
     public void inOrder(Song root) {
         if (root == null) {
             return;
         }
 
         inOrder(root.left);
-        BST.add(root);
+        inOrder(root.right);
+        BinarySearchTree.add(root);
 
     }
-    public Song subSet(String start, String end) {
-        return subSet(root, start, end);
+
+    public Song subSet(String first, String next) {
+        return subSet(root, first, next);
     }
 
+    public Song subSet(Song root, String first, String next) {
+        if (root == null) {
+            return root;
+        }
+        
+        if (first.compareToIgnoreCase(root.songName) < 0) {
+            subSet(root.left, first, next);
+        }
 
+        if (next.compareToIgnoreCase(root.songName) > 0) {
+            subSet(root.right, first, next);
+        }
+
+        return root;
+    }
 }

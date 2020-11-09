@@ -1,6 +1,3 @@
-import java.io.*;
-import java.util.*;
-
 public class Song {
     public String songName;
 	public String artistName;
@@ -21,7 +18,7 @@ public class Song {
 		this.songName = songs;
 		this.streamsAverageCount = count;
 		this.artistName = artists;
-		this.artistAverage = artistAverage;
+		this.artistAverage = count;
 		left = null;
 		right = null;
 	}
