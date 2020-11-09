@@ -37,7 +37,8 @@ public class SpotifyBST {
         String[] newFilePaths = new String[filePath.length];
 
         for (int i = 0; i < filePath.length; i++) { 
-            newFilePaths[i] = userpath + filePath[i]; System.out.println(newFilePaths[i]); 
+            newFilePaths[i] = userpath + filePath[i]; 
+            // System.out.println(newFilePaths[i]); 
         }
 
         // takes inputs from .csv files and stores them into the ArrayLists
