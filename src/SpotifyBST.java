@@ -2,10 +2,13 @@ import java.io.*;
 import java.util.*;
 
 public class SpotifyBST {
+
+    // global variable to be accessed 
     static SongPlaylist playlist = new SongPlaylist();
 
     public static void main(String[] args) throws FileNotFoundException {
 
+        // states relative location of .csv files
         String[] filePath = { "\\src\\CSV\\regional-global-weekly-2020-06-26--2020-07-03.csv",
                 "\\src\\CSV\\regional-global-weekly-2020-07-03--2020-07-10.csv",
                 "\\src\\CSV\\regional-global-weekly-2020-07-10--2020-07-17.csv",
@@ -21,20 +24,23 @@ public class SpotifyBST {
                 "\\src\\CSV\\regional-global-weekly-2020-09-18--2020-09-25.csv",
                 "\\src\\CSV\\regional-global-weekly-2020-09-25--2020-10-02.csv" };
 
+        // create ArrayLists to store data from .csv files
         ArrayList<String> songs = new ArrayList<>();
         ArrayList<String> artists = new ArrayList<>();
         ArrayList<Integer> count = new ArrayList<>();
 
-        String path = System.getProperty("user.dir");
+        // create string variable to store user path
+        String userpath = System.getProperty("user.dir");
         // System.out.println(path + filePath[0]);
 
+        // create new string array and appends userpath with relative path
         String[] newFilePaths = new String[filePath.length];
 
-        /*
-         * for (int i = 0; i < filePath.length; i++) { newFilePaths[i] = path +
-         * filePath[i]; System.out.println(newFilePaths[i]); }
-         */
+        for (int i = 0; i < filePath.length; i++) { 
+            newFilePaths[i] = userpath + filePath[i]; System.out.println(newFilePaths[i]); 
+        }
 
+        // takes inputs from .csv files and stores them into the ArrayLists
         for (String s : newFilePaths) {
             FileInputStream fis = new FileInputStream(s);
             Scanner sc = new Scanner(fis);
@@ -57,6 +63,7 @@ public class SpotifyBST {
             sc.close();
         }
 
+        // calls bst method
         binarySearchTree(songs, artists, count);
         playlist.inOrder();
         try {
@@ -67,6 +74,7 @@ public class SpotifyBST {
         }
     }
 
+    // sorts inputs into a Binary Search Tree
     public static void binarySearchTree(ArrayList<String> songs, ArrayList<String> artists, ArrayList<Integer> count) {
         for (int i = 0; i < songs.size(); i++) {
             Song artist = new Song(songs.get(i), artists.get(i), count.get(i));
@@ -75,6 +83,7 @@ public class SpotifyBST {
         }
     }
 
+    // creates a file with the sorted elements
     public static void bstFile(ArrayList<Song> playlist) throws IOException {
         File file = new File("Playlist.csv");
         FileWriter fw = new FileWriter(file);

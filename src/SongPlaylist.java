@@ -12,6 +12,7 @@ public class SongPlaylist {
         return root == null;
     }
 
+    // actual method to store songs into the Binary Search Tree
     public void add(Song obj) {
         if (root == null) {
             root = obj;
@@ -61,6 +62,7 @@ public class SongPlaylist {
 
     }
 
+    // subset methods provided by the professor
     public Song subSet(String first, String next) {
         return subSet(root, first, next);
     }
